@@ -2,20 +2,15 @@ import React, { useState } from 'react';
 
 import styled from '@emotion/styled';
 
-import { NewRecord } from './NewRecord';
+import { NewRecord } from './components/NewRecord';
 import { Divider } from 'antd';
-import { HistoryList } from './HistoryList';
+import { HistoryList } from './components/HistoryList';
 import moment, { Moment } from 'moment';
 
 const MainWrapper = styled.div`
 	max-width: 960px;
 	padding: 20px 25px;
 	margin: 0 auto;
-`;
-
-const Title = styled.h1`
-	line-height: 1em;
-	margin-bottom: 35px;
 `;
 
 export type Record = {
@@ -49,7 +44,7 @@ const App: React.FC = () => {
 
 	return (
 		<MainWrapper>
-			<Title>Kalkulačka spotřeby plynu</Title>
+			<h1>Kalkulačka spotřeby plynu</h1>
 			<NewRecord onSubmit={addRecord} />
 			<Divider />
 			<HistoryList records={revertedRecords} />

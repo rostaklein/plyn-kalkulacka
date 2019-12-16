@@ -1,26 +1,17 @@
 import React, { useState } from 'react';
-import { Row, Col, DatePicker, Button } from 'antd';
+import { Row, Col } from 'antd';
 import moment from 'moment';
-import { InputNumber } from 'antd';
 import locale from 'antd/es/date-picker/locale/cs_CZ';
-import styled from '@emotion/styled';
-import { Record } from './App';
+import { Record } from '../App';
+import {
+	StyledDatePicker,
+	StyledInputNumber,
+	StyledButton,
+} from './NewRecord.styles';
 
 interface Props {
 	onSubmit: (record: Record) => void;
 }
-
-const StyledInputNumber = styled(InputNumber)`
-	width: 100%;
-`;
-
-const StyledDatePicker = styled(DatePicker)`
-	width: 100%;
-`;
-
-const StyledButton = styled(Button)`
-	width: 100%;
-`;
 
 export const NewRecord: React.FC<Props> = ({ onSubmit }) => {
 	const [date, setDate] = useState(moment());

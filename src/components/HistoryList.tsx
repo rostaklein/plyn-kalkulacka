@@ -1,9 +1,9 @@
 import React from 'react';
 import { Table } from 'antd';
 import { Moment } from 'moment';
-import { Record } from './App';
+import { Record } from '../App';
 import { ColumnProps } from 'antd/lib/table';
-import styled from '@emotion/styled';
+import { StyledTable } from './HistoryList.styles';
 
 interface Props {
 	records: Record[];
@@ -42,15 +42,6 @@ const columnsDefinition: ColumnProps<Record>[] = [
 		dataIndex: 'dailyCost',
 	},
 ];
-
-const StyledTable = styled.div`
-	td {
-		white-space: nowrap;
-	}
-	.ant-table-body {
-		overflow: scroll;
-	}
-`;
 
 export const HistoryList: React.FC<Props> = ({ records }) => {
 	return (
