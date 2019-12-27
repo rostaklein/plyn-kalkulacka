@@ -40,14 +40,12 @@ const App: React.FC = () => {
 		setRecords([...records, record]);
 	};
 
-	const revertedRecords = records.slice().reverse();
-
 	return (
 		<MainWrapper>
 			<h1>Kalkulačka spotřeby plynu</h1>
 			<NewRecord onSubmit={addRecord} />
 			<Divider />
-			<HistoryList records={revertedRecords} />
+			<HistoryList records={records} />
 		</MainWrapper>
 	);
 };

@@ -4,12 +4,13 @@ import { Moment } from 'moment';
 import { Record } from '../../App';
 import { ColumnProps } from 'antd/lib/table';
 import { StyledTable } from './HistoryList.styles';
+import { getCalculations, CalculatedRecord } from '../../utils/getCalculations';
 
 interface Props {
 	records: Record[];
 }
 
-const columnsDefinition: ColumnProps<Record>[] = [
+const columnsDefinition: ColumnProps<CalculatedRecord>[] = [
 	{
 		title: 'Datum záznamu',
 		dataIndex: 'date',
@@ -30,27 +31,30 @@ const columnsDefinition: ColumnProps<Record>[] = [
 				Rozdíl v m<sup>3</sup>
 			</span>
 		),
-		dataIndex: 'difference',
+		dataIndex: 'difference.amount',
 	},
 	{
 		title: 'Cena rozdílu',
-		dataIndex: 'diffPrice',
+		dataIndex: 'difference.price',
+		render: (_, record) => <span>{record.difference.price} Kč</span>,
 	},
 
 	{
 		title: 'Spotřeba na den',
 		dataIndex: 'dailyCost',
+		render: (_, record) => <span>{record.averageDailyPrice} Kč</span>,
 	},
 ];
 
 export const HistoryList: React.FC<Props> = ({ records }) => {
+	const calculatedResults = getCalculations(records, 20);
 	return (
 		<>
 			<h3>Historie záznamů</h3>
 			<StyledTable>
-				<Table<Record>
+				<Table<CalculatedRecord>
 					columns={columnsDefinition}
-					dataSource={records}
+					dataSource={calculatedResults}
 					rowKey={({ date, value }, i) => `${date.toISOString()}${value}${i}`}
 					size="small"
 					pagination={{ hideOnSinglePage: true }}
