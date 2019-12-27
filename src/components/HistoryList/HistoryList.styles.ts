@@ -6,6 +6,6 @@ export const StyledTable = styled.div`
 		white-space: nowrap;
 	}
 	.ant-table-body {
-		overflow: scroll;
+		overflow: auto;
 	}
 `;

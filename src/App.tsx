@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 import styled from '@emotion/styled';
 
-import { NewRecord } from './components/NewRecord';
+import { NewRecord } from './components/NewRecord/NewRecord';
 import { Divider } from 'antd';
-import { HistoryList } from './components/HistoryList';
+import { HistoryList } from './components/HistoryList/HistoryList';
 import moment, { Moment } from 'moment';
 
 const MainWrapper = styled.div`

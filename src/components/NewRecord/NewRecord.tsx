@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Row, Col } from 'antd';
 import moment from 'moment';
 import locale from 'antd/es/date-picker/locale/cs_CZ';
-import { Record } from '../App';
+import { Record } from '../../App';
 import {
 	StyledDatePicker,
 	StyledInputNumber,

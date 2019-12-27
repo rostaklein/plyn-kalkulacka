@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'antd';
 import { Moment } from 'moment';
-import { Record } from '../App';
+import { Record } from '../../App';
 import { ColumnProps } from 'antd/lib/table';
 import { StyledTable } from './HistoryList.styles';
 
