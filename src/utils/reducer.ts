@@ -7,7 +7,8 @@ export type AppState = {
 
 export enum ActionTypes {
     ADD_RECORD = 'ADD_RECORD',
-    SET_UNIT_PRICE = 'SET_UNIT_PRICE'
+    SET_UNIT_PRICE = 'SET_UNIT_PRICE',
+    INIT_STATE = 'INIT_STATE',
 }
 
 type AddRecordAction = {
@@ -20,7 +21,12 @@ type SetUnitPriceAction = {
     unitPrice: number;
 }
 
-export type Action = AddRecordAction | SetUnitPriceAction;
+type InitStateAction = {
+    type: ActionTypes.INIT_STATE;
+    state: AppState;
+}
+
+export type Action = AddRecordAction | SetUnitPriceAction | InitStateAction;
 
 export const reducer = (state: AppState, action: Action): AppState => {
     switch (action.type) {
@@ -35,6 +41,9 @@ export const reducer = (state: AppState, action: Action): AppState => {
                 ...state,
                 unitPrice: action.unitPrice
             }
+        }
+        case ActionTypes.INIT_STATE: {
+            return action.state;
         }
         default:
             return state;

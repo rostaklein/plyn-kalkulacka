@@ -50,7 +50,7 @@ export const NewRecord: React.FC = () => {
 				<StyledInputNumber
 					onChange={setCurrentValue}
 					onPressEnter={submitHandler}
-					defaultValue={lastRecord.value}
+					defaultValue={lastRecord?.value}
 				></StyledInputNumber>
 			</Col>
 			<Col xs={24} sm={4}>

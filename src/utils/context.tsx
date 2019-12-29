@@ -1,7 +1,8 @@
-import React, { useReducer, useContext } from 'react';
-import { reducer, AppState, Action } from './reducer';
+import React, { useReducer, useContext, useEffect } from 'react';
+import { reducer, AppState, Action, ActionTypes } from './reducer';
 import moment from 'moment';
 import { Record } from '../App';
+import { persistCurrentState, tryLoadingPersistedState } from './persistState';
 
 type Context = {
 	state: AppState;
@@ -28,6 +29,21 @@ const defaultState: AppState = { list: dummyRecords, unitPrice: null };
 
 export const AppContextProvider: React.FC = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, defaultState);
+
+	useEffect(() => {
+		if (state !== defaultState) {
+			persistCurrentState(state);
+		}
+	}, [state]);
+
+	useEffect(() => {
+		tryLoadingPersistedState().then(appState => {
+			if (appState) {
+				dispatch({ type: ActionTypes.INIT_STATE, state: appState });
+			}
+		});
+	}, []);
+
 	return (
 		<AppContext.Provider value={{ state, dispatch }}>
 			{children}
