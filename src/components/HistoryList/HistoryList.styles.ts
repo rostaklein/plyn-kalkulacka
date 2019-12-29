@@ -9,3 +9,9 @@ export const StyledTable = styled.div`
 		overflow: auto;
 	}
 `;
+
+export const UnitPriceContainer = styled.div`
+	max-width: 150px;
+	margin: 15px auto;
+	text-align: left;
+`;

@@ -31,36 +31,33 @@ export const NewRecord: React.FC = () => {
 	};
 
 	return (
-		<>
-			<h3>Přidat nový záznam</h3>
-			<Row gutter={[32, 12]} align="bottom" type="flex">
-				<Col xs={24} sm={10}>
-					<label>Datum záznamu</label>
-					<StyledDatePicker
-						onChange={onDateChange}
-						placeholder={'Datum záznamu'}
-						defaultValue={date}
-						value={date}
-						locale={locale}
-						format={'D. M. YYYY'}
-					/>
-				</Col>
-				<Col xs={24} sm={10}>
-					<label>
-						Aktuální spotřeba v m<sup>3</sup>
-					</label>
-					<StyledInputNumber
-						onChange={setCurrentValue}
-						onPressEnter={submitHandler}
-						defaultValue={lastRecord.value}
-					></StyledInputNumber>
-				</Col>
-				<Col xs={24} sm={4}>
-					<StyledButton type="primary" onClick={submitHandler}>
-						Přidat
-					</StyledButton>
-				</Col>
-			</Row>
-		</>
+		<Row gutter={[32, 12]} align="bottom" type="flex">
+			<Col xs={24} sm={10}>
+				<label>Datum záznamu</label>
+				<StyledDatePicker
+					onChange={onDateChange}
+					placeholder={'Datum záznamu'}
+					defaultValue={date}
+					value={date}
+					locale={locale}
+					format={'D. M. YYYY'}
+				/>
+			</Col>
+			<Col xs={24} sm={10}>
+				<label>
+					Aktuální spotřeba v m<sup>3</sup>
+				</label>
+				<StyledInputNumber
+					onChange={setCurrentValue}
+					onPressEnter={submitHandler}
+					defaultValue={lastRecord.value}
+				></StyledInputNumber>
+			</Col>
+			<Col xs={24} sm={4}>
+				<StyledButton type="primary" onClick={submitHandler}>
+					Přidat
+				</StyledButton>
+			</Col>
+		</Row>
 	);
 };

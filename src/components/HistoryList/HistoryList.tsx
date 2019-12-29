@@ -1,10 +1,11 @@
 import React from 'react';
-import { Table } from 'antd';
+import { Table, Skeleton } from 'antd';
 import { Moment } from 'moment';
 import { ColumnProps } from 'antd/lib/table';
-import { StyledTable } from './HistoryList.styles';
+import { StyledTable, UnitPriceContainer } from './HistoryList.styles';
 import { getCalculations, CalculatedRecord } from '../../utils/getCalculations';
 import { useAppState } from '../../utils/context';
+import { UnitPrice } from '../UnitPrice/UnitPrice';
 
 const columnsDefinition: ColumnProps<CalculatedRecord>[] = [
 	{
@@ -43,20 +44,36 @@ const columnsDefinition: ColumnProps<CalculatedRecord>[] = [
 ];
 
 export const HistoryList: React.FC = () => {
-	const { list } = useAppState();
-	const calculatedResults = getCalculations(list, 20);
+	const { list, unitPrice } = useAppState();
+	if (list.length === 0) {
+		return null;
+	}
+
+	if (unitPrice === null) {
+		return (
+			<>
+				<Skeleton paragraph={{ rows: 2 }} />
+				<div style={{ margin: '15px auto', textAlign: 'center' }}>
+					K zobrazení výpočtů musíte vyplnit cenu plynu
+					<UnitPriceContainer>
+						<UnitPrice />
+					</UnitPriceContainer>
+				</div>
+				<Skeleton title={false} />
+			</>
+		);
+	}
+
+	const calculatedResults = getCalculations(list, unitPrice);
 	return (
-		<>
-			<h3>Historie záznamů</h3>
-			<StyledTable>
-				<Table<CalculatedRecord>
-					columns={columnsDefinition}
-					dataSource={calculatedResults}
-					rowKey={({ date, value }, i) => `${date.toISOString()}${value}${i}`}
-					size="small"
-					pagination={{ hideOnSinglePage: true }}
-				/>
-			</StyledTable>
-		</>
+		<StyledTable>
+			<Table<CalculatedRecord>
+				columns={columnsDefinition}
+				dataSource={calculatedResults}
+				rowKey={({ date, value }, i) => `${date.toISOString()}${value}${i}`}
+				size="small"
+				pagination={{ hideOnSinglePage: true }}
+			/>
+		</StyledTable>
 	);
 };
