@@ -40,10 +40,12 @@ const App: React.FC = () => {
 		setRecords([...records, record]);
 	};
 
+	const lastRecord = records[records.length - 1];
+
 	return (
 		<MainWrapper>
 			<h1>Kalkulačka spotřeby plynu</h1>
-			<NewRecord onSubmit={addRecord} />
+			<NewRecord onSubmit={addRecord} defaultValue={lastRecord.value} />
 			<Divider />
 			<HistoryList records={records} />
 		</MainWrapper>

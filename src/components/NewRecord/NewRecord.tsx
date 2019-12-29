@@ -11,9 +11,10 @@ import {
 
 interface Props {
 	onSubmit: (record: Record) => void;
+	defaultValue: number;
 }
 
-export const NewRecord: React.FC<Props> = ({ onSubmit }) => {
+export const NewRecord: React.FC<Props> = ({ onSubmit, defaultValue }) => {
 	const [date, setDate] = useState(moment());
 	const [value, setCurrentValue] = useState();
 
@@ -50,8 +51,8 @@ export const NewRecord: React.FC<Props> = ({ onSubmit }) => {
 					</label>
 					<StyledInputNumber
 						onChange={setCurrentValue}
-						value={value}
 						onPressEnter={submitHandler}
+						defaultValue={defaultValue}
 					></StyledInputNumber>
 				</Col>
 				<Col xs={24} sm={4}>
