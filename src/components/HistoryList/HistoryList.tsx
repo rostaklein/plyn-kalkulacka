@@ -1,14 +1,10 @@
 import React from 'react';
 import { Table } from 'antd';
 import { Moment } from 'moment';
-import { Record } from '../../App';
 import { ColumnProps } from 'antd/lib/table';
 import { StyledTable } from './HistoryList.styles';
 import { getCalculations, CalculatedRecord } from '../../utils/getCalculations';
-
-interface Props {
-	records: Record[];
-}
+import { useAppState } from '../../utils/context';
 
 const columnsDefinition: ColumnProps<CalculatedRecord>[] = [
 	{
@@ -46,8 +42,9 @@ const columnsDefinition: ColumnProps<CalculatedRecord>[] = [
 	},
 ];
 
-export const HistoryList: React.FC<Props> = ({ records }) => {
-	const calculatedResults = getCalculations(records, 20);
+export const HistoryList: React.FC = () => {
+	const { list } = useAppState();
+	const calculatedResults = getCalculations(list, 20);
 	return (
 		<>
 			<h3>Historie záznamů</h3>

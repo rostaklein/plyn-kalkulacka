@@ -2,21 +2,21 @@ import React, { useState } from 'react';
 import { Row, Col } from 'antd';
 import moment from 'moment';
 import locale from 'antd/es/date-picker/locale/cs_CZ';
-import { Record } from '../../App';
 import {
 	StyledDatePicker,
 	StyledInputNumber,
 	StyledButton,
 } from './NewRecord.styles';
+import { useAppDispatch, useAppState } from '../../utils/context';
+import { ActionTypes } from '../../utils/reducer';
 
-interface Props {
-	onSubmit: (record: Record) => void;
-	defaultValue: number;
-}
-
-export const NewRecord: React.FC<Props> = ({ onSubmit, defaultValue }) => {
+export const NewRecord: React.FC = () => {
 	const [date, setDate] = useState(moment());
 	const [value, setCurrentValue] = useState();
+	const dispatch = useAppDispatch();
+	const { list } = useAppState();
+
+	const lastRecord = list[list.length - 1];
 
 	const onDateChange = (date: moment.Moment | null) => {
 		if (date !== null) {
@@ -26,7 +26,7 @@ export const NewRecord: React.FC<Props> = ({ onSubmit, defaultValue }) => {
 
 	const submitHandler = () => {
 		if (value && date) {
-			onSubmit({ date, value });
+			dispatch({ type: ActionTypes.ADD_RECORD, record: { date, value } });
 		}
 	};
 
@@ -52,7 +52,7 @@ export const NewRecord: React.FC<Props> = ({ onSubmit, defaultValue }) => {
 					<StyledInputNumber
 						onChange={setCurrentValue}
 						onPressEnter={submitHandler}
-						defaultValue={defaultValue}
+						defaultValue={lastRecord.value}
 					></StyledInputNumber>
 				</Col>
 				<Col xs={24} sm={4}>
