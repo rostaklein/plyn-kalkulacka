@@ -37,4 +37,18 @@ describe(getCalculations.name, () => {
         expect(result[2].difference).toEqual({ amount: 80, price: 800, days: 8 })
         expect(result[2].averageDailyPrice).toBe(100)
     })
+
+    it('should round the values properly', () => {
+        const records: Record[] = [{
+            date: moment(new Date('2019-01-01')),
+            value: 120
+        }, {
+            date: moment(new Date('2019-01-04')),
+            value: 140
+        }]
+        const result = getCalculations(records, 10.156);
+
+        expect(result[1].difference).toEqual({ amount: 20, price: 203.12, days: 3 })
+        expect(result[1].averageDailyPrice).toBe(67.7)
+    })
 })

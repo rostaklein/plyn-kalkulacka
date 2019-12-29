@@ -20,15 +20,15 @@ export type Record = {
 
 const dummyRecords: Record[] = [
 	{
-		date: moment(new Date(2019, 12, 1)),
+		date: moment().add(-10, 'days'),
 		value: 4484,
 	},
 	{
-		date: moment(new Date(2019, 12, 10)),
+		date: moment().add(-5, 'days'),
 		value: 4552,
 	},
 	{
-		date: moment(),
+		date: moment().add(-1, 'days'),
 		value: 4584,
 	},
 ];
