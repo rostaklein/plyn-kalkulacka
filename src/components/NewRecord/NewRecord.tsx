@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col } from 'antd';
 import moment from 'moment';
 import locale from 'antd/es/date-picker/locale/cs_CZ';
@@ -10,7 +10,7 @@ import { StyledDatePicker, StyledInputNumber, StyledButton } from './NewRecord.s
 
 export const NewRecord: React.FC = () => {
 	const [date, setDate] = useState(moment());
-	const [value, setCurrentValue] = useState();
+	const [value, setCurrentValue] = useState<number | undefined>();
 	const dispatch = useAppDispatch();
 	const { list } = useAppState();
 
@@ -18,6 +18,11 @@ export const NewRecord: React.FC = () => {
 	const alreadyHasTodaysRecord = todaysRecordIndex >= 0;
 
 	const lastRecord = list[list.length - 1];
+	useEffect(() => {
+		if (lastRecord !== undefined) {
+			setCurrentValue(lastRecord.value);
+		}
+	}, [lastRecord]);
 
 	const onDateChange = (date: moment.Moment | null) => {
 		if (date !== null) {
@@ -54,7 +59,7 @@ export const NewRecord: React.FC = () => {
 				<StyledInputNumber
 					onChange={setCurrentValue}
 					onPressEnter={submitHandler}
-					defaultValue={lastRecord?.value}
+					value={value}
 				></StyledInputNumber>
 			</Col>
 			<Col xs={24} sm={6}>
