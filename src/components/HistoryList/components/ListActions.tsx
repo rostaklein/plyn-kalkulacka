@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from 'antd';
+import { Icon, Popconfirm } from 'antd';
 
 import { useAppDispatch } from '../../../store/context';
 import { ActionTypes } from '../../../store/reducer';
@@ -16,5 +16,14 @@ export const ListActions: React.FC<Props> = ({ recordIndex }) => {
 			recordIndex,
 		});
 	};
-	return <Icon type="delete" onClick={onClickDelete} />;
+	return (
+		<Popconfirm
+			title="Určitě chcete tento záznam smazat?"
+			onConfirm={onClickDelete}
+			okText="Ano"
+			cancelText="Ne"
+		>
+			<Icon type="delete" />
+		</Popconfirm>
+	);
 };
