@@ -27,7 +27,11 @@ const dummyRecords: Record[] = [
 	},
 ];
 
-const defaultState: AppState = { list: dummyRecords, unitPrice: null };
+export const defaultState: AppState = {
+	list: dummyRecords,
+	unitPrice: null,
+	title: 'Kalkulačka spotřeby plynu',
+};
 
 export const AppContextProvider: React.FC = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, defaultState);

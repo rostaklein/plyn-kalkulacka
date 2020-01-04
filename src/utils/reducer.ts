@@ -3,12 +3,14 @@ import { Record } from '../App';
 export type AppState = {
 	list: Record[];
 	unitPrice: number | null;
+	title: string;
 };
 
 export enum ActionTypes {
 	ADD_RECORD = 'ADD_RECORD',
 	DELETE_RECORD = 'DELETE_RECORD',
 	SET_UNIT_PRICE = 'SET_UNIT_PRICE',
+	EDIT_TITLE = 'EDIT_TITLE',
 	INIT_STATE = 'INIT_STATE',
 }
 
@@ -27,12 +29,22 @@ type SetUnitPriceAction = {
 	unitPrice: number;
 };
 
+type EditTitleAction = {
+	type: ActionTypes.EDIT_TITLE;
+	title: string;
+};
+
 type InitStateAction = {
 	type: ActionTypes.INIT_STATE;
 	state: AppState;
 };
 
-export type Action = AddRecordAction | SetUnitPriceAction | InitStateAction | DeleteRecordAction;
+export type Action =
+	| AddRecordAction
+	| SetUnitPriceAction
+	| InitStateAction
+	| DeleteRecordAction
+	| EditTitleAction;
 
 export const reducer = (state: AppState, action: Action): AppState => {
 	switch (action.type) {
@@ -52,6 +64,12 @@ export const reducer = (state: AppState, action: Action): AppState => {
 			return {
 				...state,
 				unitPrice: action.unitPrice,
+			};
+		}
+		case ActionTypes.EDIT_TITLE: {
+			return {
+				...state,
+				title: action.title,
 			};
 		}
 		case ActionTypes.INIT_STATE: {
