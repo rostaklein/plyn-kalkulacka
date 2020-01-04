@@ -6,6 +6,7 @@ import { ColumnProps } from 'antd/lib/table';
 import { useAppState } from '../../store/context';
 import { UnitPrice } from '../UnitPrice/UnitPrice';
 import { getCalculations, CalculatedRecord } from '../../utils/getCalculations';
+import { fractionFormatter, moneyFormatter } from '../../utils/formatters';
 
 import { StyledTable, UnitPriceContainer, CenteredPlaceholder } from './HistoryList.styles';
 import { ListActions } from './components/ListActions';
@@ -21,7 +22,7 @@ const columnsDefinition: ColumnProps<CalculatedRecord>[] = [
 		dataIndex: 'value',
 		render: (value: number) => (
 			<span>
-				{value} m<sup>3</sup>
+				{fractionFormatter(value)} m<sup>3</sup>
 			</span>
 		),
 	},
@@ -32,16 +33,17 @@ const columnsDefinition: ColumnProps<CalculatedRecord>[] = [
 			</span>
 		),
 		dataIndex: 'difference.amount',
+		render: fractionFormatter,
 	},
 	{
 		title: 'Cena rozdílu',
 		dataIndex: 'difference.price',
-		render: (_, record) => <span>{record.difference.price} Kč</span>,
+		render: (_, record) => moneyFormatter(record.difference.price),
 	},
 	{
 		title: 'Spotřeba na den',
 		dataIndex: 'dailyCost',
-		render: (_, record) => <span>{record.averageDailyPrice} Kč</span>,
+		render: (_, record) => moneyFormatter(record.averageDailyPrice),
 	},
 	{
 		key: 'action',
