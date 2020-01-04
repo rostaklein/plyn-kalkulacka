@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Popover, Input, Icon, Col, Button } from 'antd';
+import { Popover, Input, Icon, Col, Button, Skeleton } from 'antd';
 import Helmet from 'react-helmet';
 
 import { useAppDispatch, useAppState, defaultState } from '../../store/context';
@@ -55,6 +55,11 @@ export const EditableTitle: React.FC = () => {
 		currentTitle === defaultState.title
 			? defaultState.title
 			: `${state.title} - ${defaultState.title}`;
+
+	if (!state.isInitialized) {
+		return <Skeleton paragraph={{ rows: 1 }} title={false} />;
+	}
+
 	return (
 		<>
 			<Helmet title={pageTitle} />

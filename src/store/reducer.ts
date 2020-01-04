@@ -4,6 +4,7 @@ export type AppState = {
 	list: Record[];
 	unitPrice: number | null;
 	title: string;
+	isInitialized: boolean;
 };
 
 export enum ActionTypes {

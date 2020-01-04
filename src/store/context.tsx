@@ -1,4 +1,4 @@
-import React, { useReducer, useContext, useEffect } from 'react';
+import React, { useReducer, useContext, useEffect, useState } from 'react';
 
 import { reducer, AppState, Action, ActionTypes } from './reducer';
 import { persistCurrentState, tryLoadingPersistedState } from './persistState';
@@ -13,10 +13,12 @@ export const defaultState: AppState = {
 	list: [],
 	unitPrice: null,
 	title: 'Kalkulačka spotřeby plynu',
+	isInitialized: false,
 };
 
 export const AppContextProvider: React.FC = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, defaultState);
+	const [isInitialized, setIsInitialized] = useState(defaultState.isInitialized);
 
 	useEffect(() => {
 		if (state !== defaultState) {
@@ -29,10 +31,15 @@ export const AppContextProvider: React.FC = ({ children }) => {
 			if (appState) {
 				dispatch({ type: ActionTypes.INIT_STATE, state: appState });
 			}
+			setIsInitialized(true);
 		});
 	}, []);
 
-	return <AppContext.Provider value={{ state, dispatch }}>{children}</AppContext.Provider>;
+	return (
+		<AppContext.Provider value={{ state: { ...state, isInitialized }, dispatch }}>
+			{children}
+		</AppContext.Provider>
+	);
 };
 
 const useAppContext = () => {
