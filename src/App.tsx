@@ -7,6 +7,7 @@ import { NewRecord } from './components/NewRecord/NewRecord';
 import { HistoryList } from './components/HistoryList/HistoryList';
 import { AppContextProvider } from './utils/context';
 import { UnitPrice } from './components/UnitPrice/UnitPrice';
+import { EditableTitle } from './components/EditableTitle/EditableTitle';
 
 const MainWrapper = styled.div`
 	max-width: 960px;
@@ -29,7 +30,7 @@ const App: React.FC = () => {
 			<AppContextProvider>
 				<HeaderRow>
 					<Col xs={24} sm={18}>
-						<h1>Kalkulačka spotřeby plynu</h1>
+						<EditableTitle />
 					</Col>
 					<Col xs={24} sm={6}>
 						<UnitPrice />
