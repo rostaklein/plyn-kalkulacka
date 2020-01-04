@@ -15,15 +15,15 @@ export const Statistics: React.FC = () => {
 	const calculatedRecords = getCalculations(list, unitPrice);
 	const stats = getStatistics(calculatedRecords);
 	return (
-		<Row gutter={16} style={{ marginTop: 35 }}>
-			<Col span={6}>
+		<Row gutter={[16, 8]} style={{ marginTop: 35 }}>
+			<Col xs={24} sm={6}>
 				<Statistic
 					title="Počet dní od prvního záznamu"
 					value={stats.totalDaysDiff}
 					formatter={fractionFormatter}
 				/>
 			</Col>
-			<Col span={6}>
+			<Col xs={24} sm={6}>
 				<Statistic
 					title="Celková spotřeba"
 					value={stats.totalAmount}
@@ -35,14 +35,14 @@ export const Statistics: React.FC = () => {
 					}
 				/>
 			</Col>
-			<Col span={6}>
+			<Col xs={24} sm={6}>
 				<Statistic
 					title="Cena spotřeby celkem"
 					value={stats.totalPrice}
 					formatter={moneyFormatter}
 				/>
 			</Col>
-			<Col span={6}>
+			<Col xs={24} sm={6}>
 				<Statistic
 					title="Průměrná denní spotřeba"
 					value={stats.averageDailyPrice}
