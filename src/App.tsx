@@ -8,6 +8,7 @@ import { HistoryList } from './components/HistoryList/HistoryList';
 import { AppContextProvider } from './store/context';
 import { UnitPrice } from './components/UnitPrice/UnitPrice';
 import { EditableTitle } from './components/EditableTitle/EditableTitle';
+import { Statistics } from './components/Statistics/Statistics';
 
 const MainWrapper = styled.div`
 	max-width: 960px;
@@ -41,6 +42,7 @@ const App: React.FC = () => {
 				<Divider />
 				<h3>Historie záznamů</h3>
 				<HistoryList />
+				<Statistics />
 			</AppContextProvider>
 		</MainWrapper>
 	);

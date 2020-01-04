@@ -19,7 +19,7 @@ export const getCalculations = (records: Record[], unitPrice: number): Calculate
 		const price = amount * unitPrice;
 		const days = previousRecord ? currentRecord.date.diff(previousRecord.date, 'days') : 0;
 
-		const averageDailyPrice = previousRecord ? Math.round((price / days) * 10) / 10 : 0;
+		const averageDailyPrice = previousRecord ? price / days : 0;
 
 		return {
 			date: currentRecord.date,

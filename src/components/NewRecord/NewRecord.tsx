@@ -49,7 +49,7 @@ export const NewRecord: React.FC = () => {
 			</Col>
 			<Col xs={24} sm={9}>
 				<label>
-					Aktuální spotřeba v m<sup>3</sup>
+					Spotřeba v m<sup>3</sup>
 				</label>
 				<StyledInputNumber
 					onChange={setCurrentValue}
@@ -59,7 +59,7 @@ export const NewRecord: React.FC = () => {
 			</Col>
 			<Col xs={24} sm={6}>
 				<StyledButton type="primary" onClick={submitHandler} disabled={!value}>
-					{alreadyHasTodaysRecord ? 'Změnit dnešní záznam' : 'Přidat'}
+					{alreadyHasTodaysRecord ? 'Změnit záznam' : 'Přidat'}
 				</StyledButton>
 			</Col>
 		</Row>

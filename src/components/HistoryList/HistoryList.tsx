@@ -4,9 +4,8 @@ import { Moment } from 'moment';
 import { ColumnProps } from 'antd/lib/table';
 
 import { useAppState } from '../../store/context';
-import { getCalculations, CalculatedRecord } from '../../utils/getCalculations';
-import { useAppState } from '../../utils/context';
 import { UnitPrice } from '../UnitPrice/UnitPrice';
+import { getCalculations, CalculatedRecord } from '../../utils/getCalculations';
 
 import { StyledTable, UnitPriceContainer, CenteredPlaceholder } from './HistoryList.styles';
 import { ListActions } from './components/ListActions';
