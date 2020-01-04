@@ -7,7 +7,7 @@ import { getCalculations, CalculatedRecord } from '../../utils/getCalculations';
 import { useAppState } from '../../utils/context';
 import { UnitPrice } from '../UnitPrice/UnitPrice';
 
-import { StyledTable, UnitPriceContainer } from './HistoryList.styles';
+import { StyledTable, UnitPriceContainer, CenteredPlaceholder } from './HistoryList.styles';
 import { ListActions } from './components/ListActions';
 
 const columnsDefinition: ColumnProps<CalculatedRecord>[] = [
@@ -52,19 +52,19 @@ const columnsDefinition: ColumnProps<CalculatedRecord>[] = [
 export const HistoryList: React.FC = () => {
 	const { list, unitPrice } = useAppState();
 	if (list.length === 0) {
-		return null;
+		return <Skeleton title={false} paragraph={{ rows: 3 }} />;
 	}
 
 	if (unitPrice === null) {
 		return (
 			<>
 				<Skeleton paragraph={{ rows: 2 }} />
-				<div style={{ margin: '15px auto', textAlign: 'center' }}>
+				<CenteredPlaceholder>
 					K zobrazení výpočtů musíte vyplnit cenu plynu
 					<UnitPriceContainer>
 						<UnitPrice />
 					</UnitPriceContainer>
-				</div>
+				</CenteredPlaceholder>
 				<Skeleton title={false} />
 			</>
 		);
@@ -76,7 +76,7 @@ export const HistoryList: React.FC = () => {
 			<Table<CalculatedRecord>
 				columns={columnsDefinition}
 				dataSource={calculatedResults}
-				rowKey={({ date, value }, i) => `${date.toISOString()}${value}${i}`}
+				rowKey={({ date }) => date.toISOString()}
 				size="small"
 				pagination={{ hideOnSinglePage: true }}
 			/>

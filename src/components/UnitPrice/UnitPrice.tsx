@@ -43,7 +43,7 @@ export const UnitPrice: React.FC = () => {
 					/>
 				</Col>
 				<Col>
-					<Button icon="save" onClick={submitHandler} />
+					<Button icon="save" onClick={submitHandler} disabled={!value} />
 				</Col>
 			</Row>
 		</>

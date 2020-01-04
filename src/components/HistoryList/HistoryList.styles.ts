@@ -14,3 +14,8 @@ export const UnitPriceContainer = styled.div`
 	margin: 15px auto;
 	text-align: left;
 `;
+
+export const CenteredPlaceholder = styled.div`
+	margin: 15px auto;
+	text-align: center;
+`;

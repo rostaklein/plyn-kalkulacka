@@ -14,6 +14,9 @@ export const NewRecord: React.FC = () => {
 	const dispatch = useAppDispatch();
 	const { list } = useAppState();
 
+	const todaysRecordIndex = list.findIndex((record) => record.date.isSame(date, 'day'));
+	const alreadyHasTodaysRecord = todaysRecordIndex >= 0;
+
 	const lastRecord = list[list.length - 1];
 
 	const onDateChange = (date: moment.Moment | null) => {
@@ -24,13 +27,16 @@ export const NewRecord: React.FC = () => {
 
 	const submitHandler = () => {
 		if (value && date) {
+			if (alreadyHasTodaysRecord) {
+				dispatch({ type: ActionTypes.DELETE_RECORD, recordIndex: todaysRecordIndex });
+			}
 			dispatch({ type: ActionTypes.ADD_RECORD, record: { date, value } });
 		}
 	};
 
 	return (
 		<Row gutter={[32, 12]} align="bottom" type="flex">
-			<Col xs={24} sm={10}>
+			<Col xs={24} sm={9}>
 				<label>Datum záznamu</label>
 				<StyledDatePicker
 					onChange={onDateChange}
@@ -41,7 +47,7 @@ export const NewRecord: React.FC = () => {
 					format={'D. M. YYYY'}
 				/>
 			</Col>
-			<Col xs={24} sm={10}>
+			<Col xs={24} sm={9}>
 				<label>
 					Aktuální spotřeba v m<sup>3</sup>
 				</label>
@@ -51,9 +57,9 @@ export const NewRecord: React.FC = () => {
 					defaultValue={lastRecord?.value}
 				></StyledInputNumber>
 			</Col>
-			<Col xs={24} sm={4}>
-				<StyledButton type="primary" onClick={submitHandler}>
-					Přidat
+			<Col xs={24} sm={6}>
+				<StyledButton type="primary" onClick={submitHandler} disabled={!value}>
+					{alreadyHasTodaysRecord ? 'Změnit dnešní záznam' : 'Přidat'}
 				</StyledButton>
 			</Col>
 		</Row>

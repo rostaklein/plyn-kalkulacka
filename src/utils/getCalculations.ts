@@ -10,8 +10,10 @@ export type CalculatedRecord = Record & {
 };
 
 export const getCalculations = (records: Record[], unitPrice: number): CalculatedRecord[] => {
-	return records.map((currentRecord, i) => {
-		const previousRecord = records[i - 1];
+	const sortedByDate = records.sort((a, b) => (a.date < b.date ? -1 : 1));
+
+	const calculatedRecords = sortedByDate.map((currentRecord, i) => {
+		const previousRecord = sortedByDate[i - 1];
 
 		const amount = previousRecord ? currentRecord.value - previousRecord.value : 0;
 		const price = amount * unitPrice;
@@ -30,4 +32,6 @@ export const getCalculations = (records: Record[], unitPrice: number): Calculate
 			averageDailyPrice,
 		};
 	});
+
+	return calculatedRecords;
 };
