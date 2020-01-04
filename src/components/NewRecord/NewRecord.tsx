@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import { Row, Col } from 'antd';
 import moment from 'moment';
 import locale from 'antd/es/date-picker/locale/cs_CZ';
-import {
-	StyledDatePicker,
-	StyledInputNumber,
-	StyledButton,
-} from './NewRecord.styles';
+
 import { useAppDispatch, useAppState } from '../../utils/context';
 import { ActionTypes } from '../../utils/reducer';
+
+import { StyledDatePicker, StyledInputNumber, StyledButton } from './NewRecord.styles';
 
 export const NewRecord: React.FC = () => {
 	const [date, setDate] = useState(moment());

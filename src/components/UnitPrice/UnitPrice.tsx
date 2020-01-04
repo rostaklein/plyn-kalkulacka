@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Button, Row, Col } from 'antd';
+
 import { useAppDispatch, useAppState } from '../../utils/context';
 import { ActionTypes } from '../../utils/reducer';
-
-import { InputNumber } from 'antd';
-import styled from '@emotion/styled';
-
-export const Inp = styled(InputNumber)`
-	/* width: 100%; */
-`;
 
 export const UnitPrice: React.FC = () => {
 	const dispatch = useAppDispatch();

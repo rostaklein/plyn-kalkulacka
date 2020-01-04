@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { NewRecord } from './components/NewRecord/NewRecord';
 import { Divider, Row, Col } from 'antd';
-import { HistoryList } from './components/HistoryList/HistoryList';
 import { Moment } from 'moment';
+
+import { NewRecord } from './components/NewRecord/NewRecord';
+import { HistoryList } from './components/HistoryList/HistoryList';
 import { AppContextProvider } from './utils/context';
 import { UnitPrice } from './components/UnitPrice/UnitPrice';
 

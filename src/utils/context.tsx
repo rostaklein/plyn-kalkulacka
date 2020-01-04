@@ -1,7 +1,9 @@
 import React, { useReducer, useContext, useEffect } from 'react';
-import { reducer, AppState, Action, ActionTypes } from './reducer';
 import moment from 'moment';
+
 import { Record } from '../App';
+
+import { reducer, AppState, Action, ActionTypes } from './reducer';
 import { persistCurrentState, tryLoadingPersistedState } from './persistState';
 
 type Context = {
@@ -37,18 +39,14 @@ export const AppContextProvider: React.FC = ({ children }) => {
 	}, [state]);
 
 	useEffect(() => {
-		tryLoadingPersistedState().then(appState => {
+		tryLoadingPersistedState().then((appState) => {
 			if (appState) {
 				dispatch({ type: ActionTypes.INIT_STATE, state: appState });
 			}
 		});
 	}, []);
 
-	return (
-		<AppContext.Provider value={{ state, dispatch }}>
-			{children}
-		</AppContext.Provider>
-	);
+	return <AppContext.Provider value={{ state, dispatch }}>{children}</AppContext.Provider>;
 };
 
 const useAppContext = () => {

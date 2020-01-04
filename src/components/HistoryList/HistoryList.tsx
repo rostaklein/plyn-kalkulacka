@@ -2,10 +2,12 @@ import React from 'react';
 import { Table, Skeleton } from 'antd';
 import { Moment } from 'moment';
 import { ColumnProps } from 'antd/lib/table';
-import { StyledTable, UnitPriceContainer } from './HistoryList.styles';
+
 import { getCalculations, CalculatedRecord } from '../../utils/getCalculations';
 import { useAppState } from '../../utils/context';
 import { UnitPrice } from '../UnitPrice/UnitPrice';
+
+import { StyledTable, UnitPriceContainer } from './HistoryList.styles';
 
 const columnsDefinition: ColumnProps<CalculatedRecord>[] = [
 	{
