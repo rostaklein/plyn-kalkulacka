@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-import { AppState } from './utils/reducer';
+import { AppState } from './store/reducer';
 
 const JSON_STORAGE_API_URL = 'https://jsonstorage.net/api/items/';
 

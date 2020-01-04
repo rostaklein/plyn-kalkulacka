@@ -1,7 +1,4 @@
 import React, { useReducer, useContext, useEffect } from 'react';
-import moment from 'moment';
-
-import { Record } from '../App';
 
 import { reducer, AppState, Action, ActionTypes } from './reducer';
 import { persistCurrentState, tryLoadingPersistedState } from './persistState';
@@ -12,23 +9,8 @@ type Context = {
 };
 const AppContext = React.createContext<Context | undefined>(undefined);
 
-const dummyRecords: Record[] = [
-	{
-		date: moment().add(-10, 'days'),
-		value: 4484,
-	},
-	{
-		date: moment().add(-5, 'days'),
-		value: 4552,
-	},
-	{
-		date: moment().add(-1, 'days'),
-		value: 4584,
-	},
-];
-
 export const defaultState: AppState = {
-	list: dummyRecords,
+	list: [],
 	unitPrice: null,
 	title: 'Kalkulačka spotřeby plynu',
 };

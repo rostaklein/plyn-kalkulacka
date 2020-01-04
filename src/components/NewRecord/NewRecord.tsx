@@ -3,8 +3,8 @@ import { Row, Col } from 'antd';
 import moment from 'moment';
 import locale from 'antd/es/date-picker/locale/cs_CZ';
 
-import { useAppDispatch, useAppState } from '../../utils/context';
-import { ActionTypes } from '../../utils/reducer';
+import { useAppDispatch, useAppState } from '../../store/context';
+import { ActionTypes } from '../../store/reducer';
 
 import { StyledDatePicker, StyledInputNumber, StyledButton } from './NewRecord.styles';
 

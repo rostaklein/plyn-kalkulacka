@@ -1,8 +1,8 @@
 import React from 'react';
 import { Icon } from 'antd';
 
-import { useAppDispatch } from '../../../utils/context';
-import { ActionTypes } from '../../../utils/reducer';
+import { useAppDispatch } from '../../../store/context';
+import { ActionTypes } from '../../../store/reducer';
 
 interface Props {
 	recordIndex: number;

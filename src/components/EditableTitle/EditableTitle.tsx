@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Popover, Input, Icon, Col, Button } from 'antd';
 import Helmet from 'react-helmet';
 
-import { useAppDispatch, useAppState, defaultState } from '../../utils/context';
-import { ActionTypes } from '../../utils/reducer';
+import { useAppDispatch, useAppState, defaultState } from '../../store/context';
+import { ActionTypes } from '../../store/reducer';
 
 import { H1, EditIconWrapper, ButtonRow } from './EditableTitle.styles';
 

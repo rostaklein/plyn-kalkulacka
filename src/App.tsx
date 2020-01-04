@@ -5,7 +5,7 @@ import { Moment } from 'moment';
 
 import { NewRecord } from './components/NewRecord/NewRecord';
 import { HistoryList } from './components/HistoryList/HistoryList';
-import { AppContextProvider } from './utils/context';
+import { AppContextProvider } from './store/context';
 import { UnitPrice } from './components/UnitPrice/UnitPrice';
 import { EditableTitle } from './components/EditableTitle/EditableTitle';
 

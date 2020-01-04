@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Button, Row, Col } from 'antd';
 
-import { useAppDispatch, useAppState } from '../../utils/context';
-import { ActionTypes } from '../../utils/reducer';
+import { useAppDispatch, useAppState } from '../../store/context';
+import { ActionTypes } from '../../store/reducer';
 
 export const UnitPrice: React.FC = () => {
 	const dispatch = useAppDispatch();
