@@ -9,6 +9,7 @@ import { AppContextProvider } from './store/context';
 import { UnitPrice } from './components/UnitPrice/UnitPrice';
 import { EditableTitle } from './components/EditableTitle/EditableTitle';
 import { Statistics } from './components/Statistics/Statistics';
+import { Footer } from './components/Footer/Footer';
 
 const MainWrapper = styled.div`
 	max-width: 960px;
@@ -44,6 +45,7 @@ const App: React.FC = () => {
 				<HistoryList />
 				<Statistics />
 			</AppContextProvider>
+			<Footer />
 		</MainWrapper>
 	);
 };
