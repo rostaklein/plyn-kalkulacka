@@ -8,6 +8,7 @@ import { useAppState } from '../../utils/context';
 import { UnitPrice } from '../UnitPrice/UnitPrice';
 
 import { StyledTable, UnitPriceContainer } from './HistoryList.styles';
+import { ListActions } from './components/ListActions';
 
 const columnsDefinition: ColumnProps<CalculatedRecord>[] = [
 	{
@@ -37,11 +38,14 @@ const columnsDefinition: ColumnProps<CalculatedRecord>[] = [
 		dataIndex: 'difference.price',
 		render: (_, record) => <span>{record.difference.price} Kč</span>,
 	},
-
 	{
 		title: 'Spotřeba na den',
 		dataIndex: 'dailyCost',
 		render: (_, record) => <span>{record.averageDailyPrice} Kč</span>,
+	},
+	{
+		key: 'action',
+		render: (_, __, i) => <ListActions recordIndex={i} />,
 	},
 ];
 
