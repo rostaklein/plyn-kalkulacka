@@ -17,6 +17,7 @@ const columnsDefinition: ColumnProps<CalculatedRecord>[] = [
 		dataIndex: 'date',
 		render: (date: Moment) => date.format('D. M. YYYY'),
 		sorter: (a, b) => a.date.valueOf() - b.date.valueOf(),
+		defaultSortOrder: 'descend',
 	},
 	{
 		title: 'Spotřeba',
